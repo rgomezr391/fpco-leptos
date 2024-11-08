@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "scripts": {
+    "esbuild": "node esbuild.js"
+  },
+  "dependencies": {
+    "@reown/appkit": "^1.3.0",
+    "@reown/appkit-adapter-solana": "^1.3.0",
+    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "date-fns": "^4.1.0",
+    "esbuild": "^0.24.0",
+    "lodash": "^4.17.21",
+    "long": "^5.2.3",
+    "uuid": "^11.0.2"
+  },
+  "browser": {
+    "crypto": false,
+    "stream": false,
+    "react": false,
+    "react-dom": false,
+    "http": false,
+    "https": false,
+    "zlib": false,
+    "url": false
+  }
+}
