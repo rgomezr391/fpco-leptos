@@ -4,77 +4,7 @@ use leptos_meta::*;
 use leptos_router::*;
 use serde::Serialize;
 use wasm_bindgen::JsValue;
-// use wasm_bindgen::prelude::*;
-// use std::process::Command;
-// use serde_wasm_bindgen::{to_value, from_value};
-use crate::bindgen::{add_date, date_format, generate_uuid_v4, get_wallet_info, open_modal, setup_solana_adapter, sub_date};
-
-/////////////////////////////////////////////////////////////////////////////////////
-
-// #[wasm_bindgen(module = "/src/wrapper/wrapper.js")]
-// extern "C" {
-//     fn getFirstElement(array: JsValue) -> JsValue;
-// }
-
-// #[cfg(feature = "ssr")]
-// #[wasm_bindgen(module = "/src/package.js")]
-// extern "C" {
-//     fn generatedUuid2() -> String;
-// }
-
-// #[cfg(feature = "ssr")]
-// #[wasm_bindgen]
-// pub fn my_generateUUid2() -> String {
-//     generatedUuid2()
-// }
-
-// // #[wasm_bindgen(module = "/src/wrapper/wrapper.js")]
-// // extern "C" {
-// //     fn generatedUuid() -> String;
-// //     // fn name() -> String;
-// // }
-
-// #[cfg(feature = "ssr")]
-// #[wasm_bindgen]
-// pub fn call_js_function(function: &str, param: &str) -> String {
-//     // let output = Command::new("node")
-//     //     .arg("/src/wrapper/wrapper.js")
-//     //     .arg(param)
-//     //     .output()
-//     //     .expect("Failed to execute command");
-//     // println!("Function: {}, Param: {}", function, param);
-
-//     let output = Command::new("npx")
-//         .arg("run-func")
-//         .arg("src/wrapper/wrapper.js")
-//         .arg(function)
-//         .arg(param)
-//         .output()
-//         .expect("Failed to execute command");
-
-//     String::from_utf8_lossy(&output.stdout).to_string()
-// }
-
-// #[cfg(feature = "ssr")]
-// #[wasm_bindgen]
-// pub fn call_js_function_no_params(function: &str) -> String {
-//     // let output = Command::new("node")
-//     //     .arg("/src/wrapper/wrapper.js")
-//     //     .arg(param)
-//     //     .output()
-//     //     .expect("Failed to execute command");
-//     // println!("Function: {}, Param: {}", function, param);
-
-//     let output = Command::new("npx")
-//         .arg("run-func")
-//         .arg("src/wrapper/wrapper.js")
-//         .arg(function)
-//         .output()
-//         .expect("Failed to execute command");
-
-//     String::from_utf8_lossy(&output.stdout).to_string()
-// }
-
+use crate::bindgen::{add_date, date_format, generate_uuid_v4, setup_solana_adapter, sub_date};
 
 #[derive(Serialize)]
 struct Duration {
@@ -230,22 +160,5 @@ fn NotFound() -> impl IntoView {
 
 #[server(TestServerFunction, "/api")]
 pub async fn test_server_function() -> Result<(), ServerFnError> {
-
-    // logging::log!("Init");
-    // let array = vec!["apple", "banana", "cherry"];
-    // let js_value = to_value(&array).unwrap();
-    // let first_element = getFirstElement(js_value);
-    // let first: String = from_value(first_element).unwrap();  // Convert back to Rust String
-    // logging::log!("First: {}", first);
-
-    // let result2 = my_generateUUid2();
-    // logging::log!("Result: {}", result2);
-    
-    // logging::log!("I'm running on the server");
-    // let result = call_js_function("myFunction", "Hello World");
-    // logging::log!("{}", result);
-    // let result_no_params = call_js_function_no_params("generatedUuid");
-    // logging::log!("UUID {}", result_no_params);
-
     Ok(())
 }
