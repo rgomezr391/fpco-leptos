@@ -116,43 +116,16 @@ pub fn App() -> impl IntoView {
 /// Renders the home page of your application.
 #[component]
 fn HomePage() -> impl IntoView {
-    // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(0);
     let (today, set_today) = create_signal(String::new());
     let (yesterday, set_yesterday) = create_signal(String::new());
     let (tomorrow, set_tomorrow) = create_signal(String::new());
     let (uuid, set_uuid) = create_signal(String::new());
-
-    // Use create_effect to run a function on component load
-    create_effect(move |_| {
-        // This function will run when the component is first rendered
-        setup_solana_adapter();
-        // logging::log!("RESULT {}", result3);
-        // my_open_modal();
-    });
-
-    // let on_click = move |_| {
-    //     set_count.update(|count| *count += 1);
-    //     spawn_local(async {
-    //         let _ = test_server_function().await;
-    //     });
-    // };
-
-    // let on_click_2 = move |_| {
-
-    //     // Calling date-fns function
-    //     let now = Date::new_0();
-    //     let formatted_date: String = date_format(&now, "'Today is a' eeee");
-    //     // Update the signal with the new input value
-
-    //     set_today.update(|today| *today = formatted_date);
-
-    //     logging::log!("Formatted Date: {}", today.get());
-        
-    //     let my_uuid = generate_uuid_v4();
-    //     logging::log!("UUID {}", my_uuid);
-    // };
+    let (is_visible, set_visible) = create_signal(false);
     
+    // // Use create_effect to run a function on component load
+    // create_effect(move |_| {
+    //     setup_solana_adapter();
+    // });
 
     let on_click_call_uuid = move |_| {
         set_uuid.update(|uuid| *uuid = generate_uuid_v4());
@@ -199,10 +172,10 @@ fn HomePage() -> impl IntoView {
         set_today.update(|today| *today = formatted_date);
     };
 
-    // let get_wallet_info = move |_| {
-    //     let result = get_wallet_info();
-    //     logging::log!("WALLET NAME {}", result);
-    // };
+    let on_click_call_reown = move |_| {
+        setup_solana_adapter();
+        set_visible.update(|visible| *visible = true);
+    };
 
     view! {
         <h1>"Sample Leptos App for consuming NPM Modules"</h1>
@@ -215,23 +188,21 @@ fn HomePage() -> impl IntoView {
             <p>{tomorrow}</p>
         </div>
         <hr></hr>
-
         <div style="text-align: left;">
             <h3>"UUID NPM Module"</h3>
             <button on:click=on_click_call_uuid>"Generate UUID"</button>
             <p>{uuid}</p>
         </div>
         <hr></hr>
-
         <div style="text-align: left;">
             <h3>"Reown NPM Module"</h3>
-            <appkit-button balance="show"></appkit-button>
+            <button on:click=on_click_call_reown>"Initialize Solana Adapter"</button>
+            <br></br>
+            <Show when=move || is_visible.get()>
+                <appkit-button balance="show"></appkit-button>
+            </Show>
         </div>
         <hr></hr>
-
-        // <button on:click=on_click>"Click Me: " {count}</button>
-        // <button on:click=on_click_2>"Click Me 2"</button>
-        // <button on:click=get_wallet_info>"Get Wallet Info"</button>
     }
 }
 
